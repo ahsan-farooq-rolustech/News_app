@@ -1,11 +1,14 @@
 package com.example.seriousnewsapp.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quotesmvvmcoroutines.utils.NetworkUtils
 import com.example.seriousnewsapp.api.NewsService
+import com.example.seriousnewsapp.model.Article
 import com.example.seriousnewsapp.model.News
+import retrofit2.Response
 
 class NewsRepository(private val newsService: NewsService,private val applicationContext: Context)
 {
@@ -20,6 +23,8 @@ class NewsRepository(private val newsService: NewsService,private val applicatio
         get()=headlinesLiveData
 
 
+
+    var count:Int=0
 
     suspend fun getEveryThingByTopic(page:Int,q:String)
     {
@@ -38,15 +43,16 @@ class NewsRepository(private val newsService: NewsService,private val applicatio
         }
     }
 
-    suspend fun getHeadlinesCountry(country:String)
+    suspend fun getHeadlinesCountry(country:String,page: Int)
     {
         if(NetworkUtils.isInternetAvailable(applicationContext))
         {
-            val result=newsService.getHeadlinesCountry(country)
+            val result=newsService.getHeadlinesCountry(country,page)
             if(result?.body()!=null)
             {
                 //TODO: add the data in the database
                 headlinesLiveData.postValue(result.body())
+
             }
         }
         else
@@ -54,6 +60,32 @@ class NewsRepository(private val newsService: NewsService,private val applicatio
             //TODO: get the data from the database and display it
         }
     }
+
+    suspend fun getHeadlinesResponse(country:String,page: Int): Response<News>?
+    {
+        count++
+        Log.d("repository",count.toString())
+        if(NetworkUtils.isInternetAvailable(applicationContext))
+        {
+            val result=newsService.getHeadlinesCountry(country,page)
+            if(result?.body()!=null)
+            {
+                //TODO: add the data in the database
+               return result
+
+            }
+            else
+            {
+                return null
+            }
+        }
+        else
+        {
+            //TODO: get the data from the database and display it
+            return null
+        }
+    }
+
 
 
 }

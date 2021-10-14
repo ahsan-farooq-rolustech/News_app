@@ -87,4 +87,7 @@ dependencies {
     //ssp and sdp for better UI
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    //Paging
+    implementation "androidx.paging:paging-runtime-ktx:3.0.0-beta03"
 }

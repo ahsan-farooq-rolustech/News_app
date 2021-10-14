@@ -20,7 +20,7 @@ interface NewsService
     suspend fun getByCountryCatagory(@Query("country")country:String,@Query("category")catagory:String,@Query("page")page:Int):Response<News>
 
     @GET("/v2/top-headlines?apiKey=$API_KEY")
-    suspend fun getHeadlinesCountry(@Query("country")country: String):Response<News>
+    suspend fun getHeadlinesCountry(@Query("country")country: String,@Query("page")page:Int):Response<News>
 
 
 }
