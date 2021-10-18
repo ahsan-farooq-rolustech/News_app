@@ -78,10 +78,7 @@ class HeadlineFragment : Fragment()
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long)
             {
                 mainViewModel.setHeadlineCountryShared(Constants.countrySpinnerList[p2])
-                if (thisFragment != null)
-                {
-                    requireActivity().supportFragmentManager.beginTransaction().detach(thisFragment).attach(HeadlineFragment()).commit()
-                };
+                loadData()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?)
@@ -115,7 +112,7 @@ class HeadlineFragment : Fragment()
     {
 
         lifecycleScope.launch{
-            mainViewModel.headlinesList.collect {
+            mainViewModel.getHeadlinesCountry()?.collect {
                 pagingAdapter.submitData(it)
                 Log.d(TAG,it.toString())
             }
