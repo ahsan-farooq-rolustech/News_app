@@ -6,7 +6,7 @@ import com.example.seriousnewsapp.model.Article
 import com.example.seriousnewsapp.repository.NewsRepository
 import java.lang.Exception
 
-class NewsPagingSource(private val repository: NewsRepository):PagingSource<Int,Article>()
+class NewsPagingSource(private val repository: NewsRepository, private val headlineCountry: String):PagingSource<Int,Article>()
 {
     companion object
     {
@@ -23,7 +23,7 @@ class NewsPagingSource(private val repository: NewsRepository):PagingSource<Int,
         return try
         {
             val currentPage=params.key?:1
-            val response=repository.getHeadlinesResponse("us",currentPage)
+            val response=repository.getHeadlinesResponse(headlineCountry,currentPage)
             val responseData= mutableListOf<Article>()
             val news=response?.body()
             totalNews= news!!.totalResults

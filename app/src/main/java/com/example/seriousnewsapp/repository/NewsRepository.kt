@@ -1,6 +1,7 @@
 package com.example.seriousnewsapp.repository
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +13,13 @@ import retrofit2.Response
 
 class NewsRepository(private val newsService: NewsService,private val applicationContext: Context)
 {
+
+    companion object
+    {
+        private const val PREFERENCE_NAME="NEWS_PREFERENCE"
+        private const val HEADLINE_COUNTRY_KEY="CONTYR"
+    }
+
     //for the get every thing by topic
     private val newsLiveData=MutableLiveData<News>()
     public val news:LiveData<News>
@@ -84,6 +92,21 @@ class NewsRepository(private val newsService: NewsService,private val applicatio
             //TODO: get the data from the database and display it
             return null
         }
+    }
+
+    fun setHeadlineCountryShared(country: String)
+    {
+        val sharedPreferences=applicationContext.getSharedPreferences(PREFERENCE_NAME,Context.MODE_PRIVATE)
+        val editor=sharedPreferences.edit()
+        editor.putString(HEADLINE_COUNTRY_KEY,country)
+        editor.apply()
+
+    }
+
+    fun getHeadlneCountryShared(): String?
+    {
+        val sharedPreferences=applicationContext.getSharedPreferences(PREFERENCE_NAME,Context.MODE_PRIVATE)
+        return sharedPreferences.getString(HEADLINE_COUNTRY_KEY,"us")
     }
 
 

@@ -16,42 +16,38 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
 {
 
 
-
     public val headlines: LiveData<News>
         get() = repository.headlines
 
-    val count:Int=0
+    public var headlineCountry: String? = repository.getHeadlneCountryShared()//TODO: change into live data
 
 
-    public val headlinesList=Pager(PagingConfig(pageSize = 1))
+    public val headlinesList = Pager(PagingConfig(pageSize = 1))
     {
-        NewsPagingSource(repository)
+        NewsPagingSource(repository, headlineCountry!!)
     }.flow.cachedIn(viewModelScope)
 
 
-
-
-    public  fun getHeadlinesCountry(country: String,page:Int)
+    public fun getHeadlinesCountry(country: String, page: Int)
     {
         viewModelScope.launch(Dispatchers.IO)
         {
-            repository.getHeadlinesCountry(country,page)
+            repository.getHeadlinesCountry(country, page)
 
         }
 
 
-
     }
 
-//    public  fun getHeadlinesCountryNextPage(country: String)
-//    {
-//        this.headlinePage= headlinePage!! +1;
-//        viewModelScope.launch(Dispatchers.IO)
-//        {
-//            repository.getHeadlinesCountry(country,headlinePage!!)
-//
-//        }
-//
-//
-//    }
+
+    public fun setHeadlineCountryShared(country: String)
+    {
+        repository.setHeadlineCountryShared(country)
+    }
+
+    public fun getHeadlineCountryShared(): String?
+    {
+        return repository.getHeadlneCountryShared()
+    }
+
 }

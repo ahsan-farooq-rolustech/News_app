@@ -1,0 +1,70 @@
+package com.example.seriousnewsapp.utils
+
+object Constants
+{
+    val countrySpinnerList= mutableListOf<String>()
+
+    init
+    {
+        populateCountriesList()
+
+    }
+
+    private fun populateCountriesList()
+    {
+        countrySpinnerList.add("ae")
+        countrySpinnerList.add("ar")
+        countrySpinnerList.add("at")
+        countrySpinnerList.add("au")
+        countrySpinnerList.add("be")
+        countrySpinnerList.add("bg")
+        countrySpinnerList.add("br")
+        countrySpinnerList.add("ca")
+        countrySpinnerList.add("ch")
+        countrySpinnerList.add("cn")
+        countrySpinnerList.add("co")
+        countrySpinnerList.add("cu")
+        countrySpinnerList.add("cz")
+        countrySpinnerList.add("de")
+        countrySpinnerList.add("eg")
+        countrySpinnerList.add("fr")
+        countrySpinnerList.add("gb")
+        countrySpinnerList.add("gr")
+        countrySpinnerList.add("hk")
+        countrySpinnerList.add("hu")
+        countrySpinnerList.add("id")
+        countrySpinnerList.add("ie")
+        countrySpinnerList.add("il")
+        countrySpinnerList.add("in")
+        countrySpinnerList.add("it")
+        countrySpinnerList.add("jp")
+        countrySpinnerList.add("kr")
+        countrySpinnerList.add("lt")
+        countrySpinnerList.add("lv")
+        countrySpinnerList.add("ma")
+        countrySpinnerList.add("mx")
+        countrySpinnerList.add("my")
+        countrySpinnerList.add("ng")
+        countrySpinnerList.add("nl")
+        countrySpinnerList.add("no")
+        countrySpinnerList.add("nz")
+        countrySpinnerList.add("ph")
+        countrySpinnerList.add("pl")
+        countrySpinnerList.add("pt")
+        countrySpinnerList.add("ro")
+        countrySpinnerList.add("rs")
+        countrySpinnerList.add("ru")
+        countrySpinnerList.add("sa")
+        countrySpinnerList.add("se")
+        countrySpinnerList.add("sg")
+        countrySpinnerList.add("si")
+        countrySpinnerList.add("sk")
+        countrySpinnerList.add("th")
+        countrySpinnerList.add("tr")
+        countrySpinnerList.add("tw")
+        countrySpinnerList.add("ua")
+        countrySpinnerList.add("us")
+        countrySpinnerList.add("ve")
+        countrySpinnerList.add("za")
+    }
+}
