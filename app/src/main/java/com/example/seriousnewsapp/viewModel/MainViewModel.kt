@@ -35,12 +35,6 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
 
     public fun getHeadlinesCountry(): Flow<PagingData<Article>>
     {
-//        viewModelScope.launch(Dispatchers.IO)
-//        {
-//            repository.getHeadlinesCountry(country, page)
-//
-//        }
-
 
         refreshHeadlineCountryShared()
         val headlinesList = Pager(PagingConfig(pageSize = 1))
@@ -49,7 +43,6 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
         }.flow.cachedIn(viewModelScope)
 
         return headlinesList
-
 
     }
 

@@ -72,7 +72,7 @@ class NewsRepository(private val newsService: NewsService,private val applicatio
     suspend fun getHeadlinesResponse(country:String,page: Int): Response<News>?
     {
         count++
-        Log.d("repository",count.toString())
+        Log.d("repository","${count.toString()} and page= $page")
         if(NetworkUtils.isInternetAvailable(applicationContext))
         {
             val result=newsService.getHeadlinesCountry(country,page)

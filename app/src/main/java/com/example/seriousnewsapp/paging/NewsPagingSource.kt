@@ -6,13 +6,12 @@ import com.example.seriousnewsapp.model.Article
 import com.example.seriousnewsapp.repository.NewsRepository
 import java.lang.Exception
 
-class NewsPagingSource(private val repository: NewsRepository, private val headlineCountry: String):PagingSource<Int,Article>()
+class NewsPagingSource(private val repository: NewsRepository, private val headlineCountry: String) : PagingSource<Int, Article>()
 {
-    companion object
-    {
-        private var totalNews:Int=0
-        private var receivedNews:Int=0
-    }
+
+    private var totalNews: Int = 0
+    private var receivedNews: Int = 0
+
     override fun getRefreshKey(state: PagingState<Int, Article>): Int?
     {
         return null
@@ -22,22 +21,22 @@ class NewsPagingSource(private val repository: NewsRepository, private val headl
     {
         return try
         {
-            val currentPage=params.key?:1
-            val response=repository.getHeadlinesResponse(headlineCountry,currentPage)
-            val responseData= mutableListOf<Article>()
-            val news=response?.body()
-            totalNews= news!!.totalResults
-            receivedNews+= news.articles.size
-            val data= response.body()?.articles?: emptyList()
+            val currentPage = params.key ?: 1
+            val response = repository.getHeadlinesResponse(headlineCountry, currentPage)
+            val responseData = mutableListOf<Article>()
+            val news = response?.body()
+            totalNews = news!!.totalResults
+            receivedNews += news.articles.size
+            val data = response.body()?.articles ?: emptyList()
             responseData.addAll(data)
             LoadResult.Page(
-                data=responseData,
-                prevKey =if(currentPage==1)null else currentPage -1,
-                nextKey =if(receivedNews< totalNews-1) currentPage.plus(1) else null
+                data = responseData,
+                prevKey = if (currentPage == 1) null else currentPage - 1,
+                nextKey = if (receivedNews < totalNews - 1) currentPage.plus(1) else null
             )
 
         }
-        catch (e:Exception)
+        catch (e: Exception)
         {
             LoadResult.Error(e)
         }

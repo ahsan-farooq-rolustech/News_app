@@ -17,6 +17,7 @@ import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seriousnewsapp.R
 
 import com.example.seriousnewsapp.ui.adapter.HeadlinePagingAdapter
@@ -28,11 +29,13 @@ import kotlinx.coroutines.launch
 
 class HeadlineFragment : Fragment()
 {
+    lateinit var adapter: ArrayAdapter<String>
     lateinit var pagingAdapter:HeadlinePagingAdapter
     lateinit var binding: FragmentHeadlineBinding
     lateinit var mainViewModel: MainViewModel
 
     val TAG = "lolololololo"
+    var flag:Boolean=false
 
 
 
@@ -47,7 +50,10 @@ class HeadlineFragment : Fragment()
         val repository = (requireActivity().application as NewsApplication).newsRepository
         mainViewModel = ViewModelProvider(this, MainViewModelFactory(repository)).get(MainViewModel::class.java)
         loadCountriesSpinner()
-
+        val country:String= mainViewModel.getHeadlineCountryShared()!!
+        val position:Int=adapter.getPosition(country)
+        binding.countrySpinner.setSelection(position)
+        flag=false
 
         //binding.headLinesRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
@@ -68,25 +74,13 @@ class HeadlineFragment : Fragment()
 //
 //        })
 
-        loadData()
+//        loadData()
 
 
         val thisFragment=requireActivity().supportFragmentManager.findFragmentById(R.id.headlineFragment)
 
 
-        binding.countrySpinner.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long)
-            {
-                mainViewModel.setHeadlineCountryShared(Constants.countrySpinnerList[p2])
-                loadData()
-            }
 
-            override fun onNothingSelected(p0: AdapterView<*>?)
-            {
-                TODO("Not yet implemented")
-            }
-
-        }
 
 
 
@@ -96,15 +90,13 @@ class HeadlineFragment : Fragment()
 
     private fun loadCountriesSpinner()
     {
-        val adapter =ArrayAdapter(requireContext(),android. R.layout.simple_spinner_item, Constants.countrySpinnerList)
+        adapter =ArrayAdapter(requireContext(),android. R.layout.simple_spinner_item, Constants.countrySpinnerList)
 
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.countrySpinner.adapter=adapter
 
-        val country:String= mainViewModel.getHeadlineCountryShared()!!
-        val position:Int=adapter.getPosition(country)
-        binding.countrySpinner.setSelection(position)
+
 
     }
 
@@ -112,7 +104,7 @@ class HeadlineFragment : Fragment()
     {
 
         lifecycleScope.launch{
-            mainViewModel.getHeadlinesCountry()?.collect {
+            mainViewModel.getHeadlinesCountry().collect {
                 pagingAdapter.submitData(it)
                 Log.d(TAG,it.toString())
             }
@@ -123,14 +115,34 @@ class HeadlineFragment : Fragment()
     private fun setupLayoutManager()
     {
         //for the stack layout manager
-        val layoutManager = StackLayoutManager(StackLayoutManager.ScrollOrientation.BOTTOM_TO_TOP)
-        layoutManager.setPagerMode(true)
-        layoutManager.setPagerFlingVelocity(3000)
+//        val layoutManager = StackLayoutManager(StackLayoutManager.ScrollOrientation.BOTTOM_TO_TOP)
+//        layoutManager.setPagerMode(true)
+//        layoutManager.setPagerFlingVelocity(3000)
+        val layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
 
         binding.headLinesRv.layoutManager = layoutManager
         binding.headLinesRv.adapter=pagingAdapter
     }
 
+    override fun onResume()
+    {
+        super.onResume()
+        binding.countrySpinner.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long)
+            {
+                mainViewModel.setHeadlineCountryShared(Constants.countrySpinnerList[p2])
+                loadData()
+                flag=true
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?)
+            {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+    }
 
 }
