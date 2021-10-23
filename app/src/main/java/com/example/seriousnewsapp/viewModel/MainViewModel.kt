@@ -9,6 +9,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.seriousnewsapp.model.Article
 import com.example.seriousnewsapp.model.News
+import com.example.seriousnewsapp.paging.DiscoveryPagingSource
 import com.example.seriousnewsapp.paging.NewsPagingSource
 import com.example.seriousnewsapp.repository.NewsRepository
 import kotlinx.coroutines.Dispatchers
@@ -22,15 +23,24 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
     public val headlines: LiveData<News>
         get() = repository.headlines
 
-    public var headlineCountry: String? =null
+    public var country: String? =null
 
     init
     {
-        headlineCountry= repository.getHeadlneCountryShared()
+        country= repository.getHeadlneCountryShared()
     }
 
 
 
+    public fun getCategory(category: String):Flow<PagingData<Article>>
+    {
+        refreshHeadlineCountryShared()
+        val list=Pager(PagingConfig(pageSize = 1))
+        {
+            DiscoveryPagingSource(repository,country!!,category)
+        }.flow.cachedIn(viewModelScope)
+        return list
+    }
 
 
     public fun getHeadlinesCountry(): Flow<PagingData<Article>>
@@ -39,7 +49,7 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
         refreshHeadlineCountryShared()
         val headlinesList = Pager(PagingConfig(pageSize = 1))
         {
-            NewsPagingSource(repository, headlineCountry!!)
+            NewsPagingSource(repository, country!!)
         }.flow.cachedIn(viewModelScope)
 
         return headlinesList
@@ -55,13 +65,13 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
     public fun getHeadlineCountryShared(): String?
     {
 
-        headlineCountry=repository.getHeadlneCountryShared()
-        return headlineCountry
+        country=repository.getHeadlneCountryShared()
+        return country
     }
 
     public fun refreshHeadlineCountryShared()
     {
-        headlineCountry=repository.getHeadlneCountryShared()
+        country=repository.getHeadlneCountryShared()
     }
 
 }

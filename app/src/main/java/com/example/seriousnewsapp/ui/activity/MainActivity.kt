@@ -4,14 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.seriousnewsapp.R
 import com.example.seriousnewsapp.application.NewsApplication
 import com.example.seriousnewsapp.viewModel.MainViewModel
 import com.example.seriousnewsapp.viewModel.MainViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity()
 {
-    lateinit var mainViewModel: MainViewModel
+
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -19,11 +22,10 @@ class MainActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val repository=(application as NewsApplication).newsRepository
-        mainViewModel=ViewModelProvider(this,MainViewModelFactory(repository)).get(MainViewModel::class.java)
+        val botomNavigationView=findViewById<BottomNavigationView>(R.id.mainBottomNavigation)
+        val navController=findNavController(R.id.fragmentContainerView)
+        botomNavigationView.setupWithNavController(navController)
 
-        mainViewModel.headlines.observe(this,{
-            Log.d("KHABAR",it.toString())
-        })
+
     }
 }

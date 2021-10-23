@@ -48,43 +48,43 @@
         app:tabMode="scrollable">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabBusiness"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/business" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabEntairtment"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/entertainment" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabGeneral"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/general" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabHealth"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/health" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabScience"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/science" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabSports"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sports" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabTechnology"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/technology" />
