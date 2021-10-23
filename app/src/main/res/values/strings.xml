@@ -6,4 +6,11 @@
     <string name="learn_more"><![CDATA[Learn More ->]]></string>
     <string name="headlines_image_view">headlines image view</string>
     <string name="home">Home</string>
+    <string name="business">Business</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="general">general</string>
+    <string name="health">health</string>
+    <string name="science">science</string>
+    <string name="sports">sports</string>
+    <string name="technology">technology</string>
 </resources>

@@ -24,4 +24,9 @@
             app:argType="string"
             android:defaultValue="www.google.com" />
     </fragment>
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.example.seriousnewsapp.ui.fragments.DiscoverFragment"
+        android:label="fragment_discover"
+        tools:layout="@layout/fragment_discover" />
 </navigation>

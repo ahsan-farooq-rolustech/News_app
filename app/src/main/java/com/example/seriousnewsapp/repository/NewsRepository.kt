@@ -32,42 +32,29 @@ class NewsRepository(private val newsService: NewsService,private val applicatio
 
 
 
-    var count:Int=0
+    var count:Int=0//for logging
 
-    suspend fun getEveryThingByTopic(page:Int,q:String)
+    suspend fun getCategory(country:String,page: Int,category:String): Response<News>?
     {
         if(NetworkUtils.isInternetAvailable(applicationContext))
         {
-            val result=newsService.getEveryTopic(q,page)
+            val result=newsService.getByCountryCatagory(country,category,page)
             if(result?.body()!=null)
             {
-                //TODO: add the data in the database
-                newsLiveData.postValue(result.body())
+                return result
+            }
+            else
+            {
+                return null
             }
         }
         else
         {
-            //TODO: get the data from the database and display it
+            return null
         }
     }
 
-    suspend fun getHeadlinesCountry(country:String,page: Int)
-    {
-        if(NetworkUtils.isInternetAvailable(applicationContext))
-        {
-            val result=newsService.getHeadlinesCountry(country,page)
-            if(result?.body()!=null)
-            {
-                //TODO: add the data in the database
-                headlinesLiveData.postValue(result.body())
 
-            }
-        }
-        else
-        {
-            //TODO: get the data from the database and display it
-        }
-    }
 
     suspend fun getHeadlinesResponse(country:String,page: Int): Response<News>?
     {

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.DiscoverFragment">
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:text="Discover"
+        android:textSize="@dimen/_30ssp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:text="News from all over the world"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/_10ssp" />
+
+    <EditText
+        android:id="@+id/discoverSarch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:background="@drawable/discover_search_bg"
+        android:drawableStart="@drawable/icons8_search_30px"
+        android:elevation="@dimen/_15sdp"
+        android:hint="Search"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/black" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/discoverTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:tabContentStart="@dimen/_30sdp"
+        app:tabMode="scrollable">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabBusiness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/business" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabEntairtment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/entertainment" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/general" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabHealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/health" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabScience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/science" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabSports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sports" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabTechnology"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/technology" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/discoverRv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10sdp" />
+
+
+</LinearLayout>

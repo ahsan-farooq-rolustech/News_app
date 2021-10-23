@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/home"
+    <item android:title=""
         android:id="@+id/headlineFragment"
         android:icon="@drawable/icons8_home_24px"/>
+    <item android:title=""
+        android:id="@+id/discoverFragment"
+        android:icon="@drawable/icons8_search_more_50px_2"/>
 </menu>
