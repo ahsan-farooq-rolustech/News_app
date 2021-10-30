@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.seriousnewsapp.R
 import com.example.seriousnewsapp.application.NewsApplication
 import com.example.seriousnewsapp.databinding.FragmentDiscoverBinding
 import com.example.seriousnewsapp.ui.adapter.DiscoverPagingAdapter
@@ -41,10 +42,15 @@ class DiscoverFragment : Fragment()
         binding.discoverTabLayout.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?)
             {
-                when(tab!!.id)
+                when(tab!!.text)
                 {
-//                    binding.tabBusiness.id -> loadData("business")
-//                    binding.tabEntairtment.id -> loadData("entertainment")
+                    getString(R.string.business) -> loadData("business")
+                    getString(R.string.entertainment) -> loadData("entertainment")
+                    getString(R.string.general)-> loadData("general")
+                    getString(R.string.health)->loadData("health")
+                    getString(R.string.science)-> loadData("science")
+                    getString(R.string.sports)-> loadData("sports")
+                    getString(R.string.technology)-> loadData("technology")
                 }
             }
 
