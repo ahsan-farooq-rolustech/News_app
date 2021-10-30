@@ -67,7 +67,7 @@ class HeadlinePagingAdapter(private val context: Context,private val newsOfTheDa
             if (data != null)
             {
                 this.headlineRvSource.text=data.source.name
-                this.headlineRvPublishedAt.text=data.publishedAt
+                this.headlineRvPublishedAt.text=data.author
             }
         }
 

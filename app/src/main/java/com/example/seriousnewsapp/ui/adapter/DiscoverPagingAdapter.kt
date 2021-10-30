@@ -44,6 +44,8 @@ class DiscoverPagingAdapter(private val context: Context) : PagingDataAdapter<Ar
             holder.binding.apply {
                 Glide.with(context).load(data.urlToImage).transform(CenterCrop(), RoundedCorners(30)).into(this.discoverRvLayoutImage)
                 this.discoverRvLayoutText.text=data.title
+                this.discoverRvLayoutSource.text=data.source.name
+                this.discoverRvLayoutTime.text=data.author
             }
         }
     }
