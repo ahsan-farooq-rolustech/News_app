@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seriousnewsapp.R
 import com.example.seriousnewsapp.application.NewsApplication
@@ -74,7 +75,8 @@ class DiscoverFragment : Fragment()
                 }
                 else
                 {
-
+                    val action=DiscoverFragmentDirections.actionDiscoverFragmentToSearchResultsFragment(this.text.toString())
+                    Navigation.findNavController(it).navigate(action)
                 }
             }
         }

@@ -3,6 +3,7 @@ package com.example.seriousnewsapp.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.seriousnewsapp.databinding.DiscoverRvLayoutBinding
 import com.example.seriousnewsapp.model.Article
+import com.example.seriousnewsapp.ui.fragments.SearchResultsFragmentDirections
 
 class SearchPagingAdapter(private val context: Context):PagingDataAdapter<Article,SearchPagingAdapter.ViewHolder>((diffCallback))
 {
@@ -43,6 +45,11 @@ class SearchPagingAdapter(private val context: Context):PagingDataAdapter<Articl
                 this.discoverRvLayoutText.text=data.title
                 this.discoverRvLayoutSource.text=data.source.name
                 this.discoverRvLayoutTime.text=data.author
+
+                this.discoverRvLayoutTop.setOnClickListener {
+                    val action=SearchResultsFragmentDirections.actionSearchResultsFragmentToNewsDetailFragment(data.url)
+                    Navigation.findNavController(it).navigate(action)
+                }
             }
         }
     }

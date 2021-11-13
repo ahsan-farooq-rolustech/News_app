@@ -42,5 +42,8 @@
             android:name="searchKeyword"
             app:argType="string"
             android:defaultValue='" "' />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
     </fragment>
 </navigation>
