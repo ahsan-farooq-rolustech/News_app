@@ -12,13 +12,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.seriousnewsapp.databinding.DiscoverRvLayoutBinding
 import com.example.seriousnewsapp.model.Article
 
-class DiscoverPagingAdapter(private val context: Context) : PagingDataAdapter<Article, DiscoverPagingAdapter.ViewHolder>(diffCallback)
+class SearchPagingAdapter(private val context: Context):PagingDataAdapter<Article,SearchPagingAdapter.ViewHolder>((diffCallback))
 {
-    inner class ViewHolder(val binding: DiscoverRvLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: DiscoverRvLayoutBinding):RecyclerView.ViewHolder(binding.root)
 
     companion object
     {
-        val diffCallback = object : DiffUtil.ItemCallback<Article>()
+        val diffCallback=object: DiffUtil.ItemCallback<Article>()
         {
             override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean
             {

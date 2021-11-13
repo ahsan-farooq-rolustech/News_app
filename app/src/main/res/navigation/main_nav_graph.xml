@@ -28,5 +28,19 @@
         android:id="@+id/discoverFragment"
         android:name="com.example.seriousnewsapp.ui.fragments.DiscoverFragment"
         android:label="fragment_discover"
-        tools:layout="@layout/fragment_discover" />
+        tools:layout="@layout/fragment_discover" >
+        <action
+            android:id="@+id/action_discoverFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="com.example.seriousnewsapp.ui.fragments.SearchResultsFragment"
+        android:label="fragment_search_results"
+        tools:layout="@layout/fragment_search_results" >
+        <argument
+            android:name="searchKeyword"
+            app:argType="string"
+            android:defaultValue='" "' />
+    </fragment>
 </navigation>

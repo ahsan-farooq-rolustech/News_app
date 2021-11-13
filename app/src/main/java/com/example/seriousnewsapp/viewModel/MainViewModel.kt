@@ -11,6 +11,7 @@ import com.example.seriousnewsapp.model.Article
 import com.example.seriousnewsapp.model.News
 import com.example.seriousnewsapp.paging.DiscoveryPagingSource
 import com.example.seriousnewsapp.paging.NewsPagingSource
+import com.example.seriousnewsapp.paging.SearchPagingSource
 import com.example.seriousnewsapp.repository.NewsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -54,6 +55,17 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
 
         return headlinesList
 
+    }
+
+    public fun getEveryThingTopic(q: String):Flow<PagingData<Article>>
+    {
+        refreshHeadlineCountryShared()
+        val list=Pager(PagingConfig(pageSize = 1))
+        {
+            SearchPagingSource(repository,q)
+        }.flow.cachedIn(viewModelScope)
+
+        return list
     }
 
 

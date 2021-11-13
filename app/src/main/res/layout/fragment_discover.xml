@@ -24,26 +24,43 @@
         android:text="News from all over the world"
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/_10ssp" />
-
-    <EditText
-        android:id="@+id/discoverSarch"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:background="@drawable/discover_search_bg"
-        android:drawableStart="@drawable/icons8_search_30px"
-        android:elevation="@dimen/_15sdp"
-        android:hint="Search"
-        android:padding="@dimen/_10sdp"
-        android:textColor="@color/black" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/discoverSarch"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/discover_search_bg"
+            android:drawableStart="@drawable/icons8_search_30px"
+            android:elevation="@dimen/_15sdp"
+            android:hint="Search"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/search_img"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/icons8_search_64px_1"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:clickable="true"/>
+
+    </LinearLayout>
+
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/discoverTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:tabContentStart="@dimen/_30sdp"
         app:tabMode="scrollable">
 

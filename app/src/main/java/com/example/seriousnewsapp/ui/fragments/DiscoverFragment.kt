@@ -66,6 +66,19 @@ class DiscoverFragment : Fragment()
 
         })
 
+        binding.searchImg.setOnClickListener{
+            binding.discoverSarch.apply {
+                if(this.text.isNullOrEmpty())
+                {
+                    this.error = "Enter Keyword"
+                }
+                else
+                {
+
+                }
+            }
+        }
+
         return binding.root
     }
 
