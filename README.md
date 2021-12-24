@@ -4,10 +4,9 @@ This is a news application that uses an online API ([News API – Search News an
 
 Here are some screen shots of this applications
 
-[20211224_224506_photo_2021-12-24_22-32-39.jpg](assets/20211224_224506_photo_2021-12-24_22-32-39.jpg)
+![20211224_224506_photo_2021-12-24_22-32-39.jpg](assets/20211224_224506_photo_2021-12-24_22-32-39.jpg)
 
-
-[20211224_224515_photo_2021-12-24_22-32-34.jpg](assets/20211224_224515_photo_2021-12-24_22-32-34.jpg)
+![20211224_224515_photo_2021-12-24_22-32-34.jpg](assets/20211224_224515_photo_2021-12-24_22-32-34.jpg)
 
 This application is built in kotlin using mvvm architecture. Iam also using andorid architectural components like navigation graphs etc. New features are added incremently
 
