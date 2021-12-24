@@ -17,7 +17,6 @@ class NewsApplication : Application()
     private fun initialize()
     {
         val newsService = RetrofitHelper.getInstant().create(NewsService::class.java)
-
         newsRepository= NewsRepository(newsService,applicationContext)
     }
 }
