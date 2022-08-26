@@ -4,29 +4,29 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="@dimen/_20sdp"
-    app:cardCornerRadius="@dimen/_20sdp"
-    android:layout_marginStart="@dimen/_15sdp"
-    android:layout_marginEnd="@dimen/_15sdp"
+    android:padding="20dp"
+    app:cardCornerRadius="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
     android:id="@+id/headlines_rv_layout_card"
-    android:elevation="@dimen/_15sdp"
-    app:cardElevation="@dimen/_15sdp">
+    android:elevation="15dp"
+    app:cardElevation="15dp">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/_20sdp">
+        android:padding="20dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_20sdp"
-        android:elevation="@dimen/_10sdp">
+        app:cardCornerRadius="20dp"
+        android:elevation="10dp">
     
     <ImageView
         android:id="@+id/headlineRvImage"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_140sdp"
+        android:layout_width="200dp"
+        android:layout_height="140dp"
         android:background="@drawable/headlines_rv_layout_img_bg"
         android:scaleType="centerCrop" />
 
@@ -38,8 +38,8 @@
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:textColor="@color/black"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:textSize="@dimen/_18ssp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:maxEms="2"
         android:text="candidate biden called saudi a pharah"/>
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="20dp"
                 android:text="Published At"
                 android:layout_gravity="end"/>
         </LinearLayout>

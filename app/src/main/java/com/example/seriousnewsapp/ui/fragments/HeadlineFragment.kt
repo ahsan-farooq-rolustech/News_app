@@ -31,7 +31,7 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener
     private lateinit var binding: FragmentHeadlineBinding
     private lateinit var mainViewModel: MainViewModel
 
-    val TAG = "lolololololo"
+    private val TAG = "lolololololo"
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View

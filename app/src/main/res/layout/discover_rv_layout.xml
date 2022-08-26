@@ -3,13 +3,13 @@
     android:id="@+id/discoverRvLayoutTop"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_10sdp"
+    android:layout_margin="10dp"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/discoverRvLayoutImage"
-        android:layout_width="@dimen/_90sdp"
-        android:layout_height="@dimen/_90sdp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:src="@android:color/darker_gray" />
 
     <LinearLayout
@@ -21,10 +21,10 @@
             android:id="@+id/discoverRvLayoutText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="10dp"
             android:maxLines="3"
             android:text="dfajklfladkjglkahgkjzvkjbdsakfnlkvgiukhjioefnhtiowrchgirhmjhvjhv"
-            android:textSize="@dimen/_15ssp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -37,9 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="source"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginStart="10dp"
                 android:textStyle="italic"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="10dp"
                 android:textColor="@android:color/darker_gray"/>
 
             <TextView
@@ -47,9 +47,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Time"
-                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginStart="50dp"
                 android:textStyle="italic"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="10dp"
                 android:textColor="@android:color/darker_gray"/>
         </LinearLayout>
     </LinearLayout>
