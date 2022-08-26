@@ -2,6 +2,7 @@ package com.example.seriousnewsapp.ui.fragments
 
 
 import android.os.Bundle
+import android.provider.SyncStateContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.seriousnewsapp.application.NewsApplication
 import com.example.seriousnewsapp.databinding.FragmentHeadlineBinding
 import com.example.seriousnewsapp.ui.adapter.HeadlinePagingAdapter
 import com.example.seriousnewsapp.utils.AppConstants
+import com.example.seriousnewsapp.utils.AppConstants.countrySpinnerList
 import com.example.seriousnewsapp.viewModel.MainViewModel
 import com.example.seriousnewsapp.viewModel.MainViewModelFactory
 import kotlinx.coroutines.flow.collect
@@ -41,31 +43,33 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener
         setListinners()
         binding.countrySpinner.setSelection(getPositionFromCountruSelected())
         setPagingAdapter()
-        // setSpinners()
+         setSpinners()
         setupLayoutManager()
         return binding.root
     }
 
     private fun setListinners()
     {
-        binding.countrySpinner.onItemSelectedListener = this
+//        binding.countrySpinner.onItemSelectedListener = this
     }
 
-//    private fun setSpinners()
-//    {
-//        binding.countrySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
-//        {
-//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long)
-//            {
-//
-//            }
-//
-//            override fun onNothingSelected(p0: AdapterView<*>?)
-//            {
-//                TODO("Not yet implemented")
-//            }
-//        }
-//    }
+    private fun setSpinners()
+    {
+        binding.countrySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
+        {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long)
+            {
+                mainViewModel.setHeadlineCountryShared(AppConstants.countrySpinnerList[p2])
+                loadData()
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?)
+            {
+                TODO("Not yet implemented")
+            }
+        }
+    }
 
 
     private fun setPagingAdapter()
