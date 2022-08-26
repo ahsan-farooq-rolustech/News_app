@@ -74,7 +74,7 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
         repository.setHeadlineCountryShared(country)
     }
 
-    public fun getHeadlineCountryShared(): String?
+    public fun getCountryFromSharesPrefs(): String?
     {
 
         country=repository.getHeadlneCountryShared()

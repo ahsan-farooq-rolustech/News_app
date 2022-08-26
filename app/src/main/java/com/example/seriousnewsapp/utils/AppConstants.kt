@@ -1,8 +1,11 @@
 package com.example.seriousnewsapp.utils
 
-object Constants
+object AppConstants
 {
     val countrySpinnerList= mutableListOf<String>()
+    const val BASE_URL="https://newsapi.org"
+    const val API_KEY="3a9c5458249541c795c94dd76ae419cb"
+    const val ERROR_ENTER_KEYWORD="Enter Keyword"
 
     init
     {
@@ -67,4 +70,16 @@ object Constants
         countrySpinnerList.add("ve")
         countrySpinnerList.add("za")
     }
+}
+
+object CategoryConstants
+{
+    const val CATEGORY_BUSINESS="business"
+    const val CATEGORY_ENTERTAINMENT="entertainment"
+    const val CATEGORY_GENERAL="general"
+    const val CATEGORY_HEALTH="health"
+    const val CATEGORY_SCIENCE="science"
+    const val CATEGORY_SPORTS="sports"
+    const val CATEGORY_TECHNOLOGY="technology"
+
 }

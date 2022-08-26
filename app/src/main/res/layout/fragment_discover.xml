@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_70sdp"
-        android:text="Discover"
+        android:text="@string/discover"
         android:textSize="@dimen/_30ssp"
         android:textStyle="bold" />
 
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"
-        android:text="News from all over the world"
+        android:text="@string/news_from_all_over_the_world"
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/_10ssp" />
     <LinearLayout
@@ -30,16 +30,16 @@
         android:orientation="horizontal"
         >
         <EditText
-            android:id="@+id/discoverSarch"
+            android:id="@+id/etSearch"
             android:layout_width="@dimen/_250sdp"
             android:layout_height="@dimen/_40sdp"
-            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_20sdp"
             android:background="@drawable/discover_search_bg"
             android:drawableStart="@drawable/icons8_search_30px"
             android:elevation="@dimen/_15sdp"
-            android:hint="Search"
+            android:hint="@string/search"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black" />
 
@@ -50,7 +50,8 @@
             android:src="@drawable/icons8_search_64px_1"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_25sdp"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 

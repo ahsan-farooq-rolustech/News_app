@@ -1,11 +1,10 @@
 package com.example.seriousnewsapp.api
 
 import com.example.seriousnewsapp.model.News
+import com.example.seriousnewsapp.utils.AppConstants.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
-
-const val API_KEY="3a9c5458249541c795c94dd76ae419cb"
 
 interface NewsService
 {

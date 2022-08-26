@@ -53,14 +53,14 @@
     <Spinner
         android:id="@+id/country_spinner"
         android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/newsOfTheDayImg"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/spinner_bg"
-        android:padding="@dimen/_10sdp"
-        android:elevation="@dimen/_15sdp"/>
+        android:elevation="@dimen/_15sdp"
+        android:padding="@dimen/_10sdp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/headLinesRv"

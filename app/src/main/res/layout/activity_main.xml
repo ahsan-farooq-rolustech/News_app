@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/main_menu"/>
+        app:menu="@menu/main_menu"
+        app:itemTextColor="@color/white"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"/>
 
     <fragment
         android:id="@+id/fragmentContainerView"

@@ -14,4 +14,6 @@
     <string name="sports">sports</string>
     <string name="technology">technology</string>
     <string name="discover">Discover</string>
+    <string name="search">Search</string>
+    <string name="news_from_all_over_the_world">News from all over the world</string>
 </resources>
