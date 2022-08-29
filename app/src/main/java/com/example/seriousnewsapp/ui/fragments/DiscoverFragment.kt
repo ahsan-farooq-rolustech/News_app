@@ -36,11 +36,16 @@ class DiscoverFragment : Fragment(), View.OnClickListener
         setViewModel()
         setPagingAdapter()
         setAdapter()
-        loadData(CategoryConstants.CATEGORY_BUSINESS)
+        loadNews()
         setDiscoverTabLayout()
         setListinners()
 
         return binding.root
+    }
+
+    private fun loadNews()
+    {
+        loadData(CategoryConstants.CATEGORY_BUSINESS)
     }
 
     private fun setPagingAdapter()

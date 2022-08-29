@@ -89,8 +89,7 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener, AppInte
     private fun getPositionFromCountruSelected(): Int
     {
         val country: String = mainViewModel.getCountryFromSharesPrefs()!!
-        val position: Int = adapter.getPosition(country)
-        return position
+        return adapter.getPosition(country)
     }
 
     private fun setMainViewModel()
