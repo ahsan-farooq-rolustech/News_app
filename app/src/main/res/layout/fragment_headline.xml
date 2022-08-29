@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.HeadlineFragment">
 
 
@@ -32,11 +31,11 @@
         android:id="@+id/newsOfTheDayTitleClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/learn_more"
         android:layout_below="@id/newsOfTheDayTitle"
         android:layout_marginStart="19dp"
         android:layout_marginTop="18dp"
-        android:textSize="15sp"/>
+        android:text="@string/learn_more"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/breakingNews"

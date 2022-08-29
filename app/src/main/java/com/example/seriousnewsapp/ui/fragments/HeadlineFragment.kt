@@ -2,7 +2,6 @@ package com.example.seriousnewsapp.ui.fragments
 
 
 import android.os.Bundle
-import android.provider.SyncStateContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,19 +11,20 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seriousnewsapp.application.NewsApplication
 import com.example.seriousnewsapp.databinding.FragmentHeadlineBinding
 import com.example.seriousnewsapp.ui.adapter.HeadlinePagingAdapter
+import com.example.seriousnewsapp.interfaces.AppInterfaces
 import com.example.seriousnewsapp.utils.AppConstants
-import com.example.seriousnewsapp.utils.AppConstants.countrySpinnerList
 import com.example.seriousnewsapp.viewModel.MainViewModel
 import com.example.seriousnewsapp.viewModel.MainViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
-class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener
+class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener, AppInterfaces
 {
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var pagingAdapter: HeadlinePagingAdapter
@@ -75,6 +75,7 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener
     private fun setPagingAdapter()
     {
         pagingAdapter = HeadlinePagingAdapter(requireContext(), binding.newsOfTheDayImg, binding.newsOfTheDayTitle)
+        pagingAdapter.setListinner(this)
     }
 
     private fun getPositionFromCountruSelected(): Int
@@ -135,6 +136,12 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener
 
     override fun onNothingSelected(parent: AdapterView<*>?)
     {
+    }
+
+    override fun onHeadlineClicked(url: String)
+    {
+        val action = HeadlineFragmentDirections.actionHeadlineFragmentToNewsDetailFragment(url)
+        Navigation.findNavController(binding.root).navigate(action)
     }
 
 }

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation
+import androidx.fragment.app.Fragment
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,13 +14,21 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.seriousnewsapp.databinding.HeadlinesRvLayoutBinding
 import com.example.seriousnewsapp.model.Article
-import com.example.seriousnewsapp.ui.fragments.HeadlineFragmentDirections
+import com.example.seriousnewsapp.ui.fragments.HeadlineFragment
+import com.example.seriousnewsapp.interfaces.AppInterfaces
 
 class HeadlinePagingAdapter(private val context: Context,private val newsOfTheDayImg: ImageView, private val newsOfTheDayTitle: TextView):PagingDataAdapter<Article,HeadlinePagingAdapter.HeadlineViewHolder>(diffCallback)
 {
     inner class HeadlineViewHolder(val binding: HeadlinesRvLayoutBinding): RecyclerView.ViewHolder(binding.root)
     {
 
+    }
+
+    private lateinit var mListinner:AppInterfaces
+
+    public fun setListinner(listinner: AppInterfaces)
+    {
+        this.mListinner=listinner
     }
 
     companion object
@@ -72,8 +80,12 @@ class HeadlinePagingAdapter(private val context: Context,private val newsOfTheDa
         }
 
         holder.binding.root.setOnClickListener {
-            val action=HeadlineFragmentDirections.actionHeadlineFragmentToNewsDetailFragment(data!!.url)
-            Navigation.findNavController(it).navigate(action)
+//            val action=HeadlineFragmentDirections.actionHeadlineFragmentToNewsDetailFragment(data!!.url)
+//            Navigation.findNavController(it).navigate(action)
+            if(data!=null)
+            {
+                mListinner.onHeadlineClicked(data.url)
+            }
         }
     }
 
