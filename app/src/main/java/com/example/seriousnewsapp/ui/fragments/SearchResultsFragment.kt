@@ -33,17 +33,23 @@ class SearchResultsFragment : Fragment(), AppInterfaces
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         bindind = FragmentSearchResultsBinding.inflate(layoutInflater, container, false)
-
-        val repository = (requireActivity().application as NewsApplication).newsRepository
-        mainViewModel = ViewModelProvider(this, MainViewModelFactory(repository = repository)).get(MainViewModel::class.java)
-
-        pagingAdapter = SearchPagingAdapter(requireContext())
-        pagingAdapter.setListinner(this)
-
+        setMainViewModel()
+        setPagingAdapter()
         setLayoutManager()
         loadData()
-
         return bindind.root
+    }
+
+    private fun setMainViewModel()
+    {
+        val repository = (requireActivity().application as NewsApplication).newsRepository
+        mainViewModel = ViewModelProvider(this, MainViewModelFactory(repository = repository)).get(MainViewModel::class.java)
+    }
+
+    private fun setPagingAdapter()
+    {
+        pagingAdapter = SearchPagingAdapter(requireContext())
+        pagingAdapter.setListinner(this)
     }
 
     private fun loadData()

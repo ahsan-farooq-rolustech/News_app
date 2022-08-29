@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.seriousnewsapp.R
 import com.example.seriousnewsapp.application.NewsApplication
 import com.example.seriousnewsapp.databinding.FragmentHeadlineBinding
 import com.example.seriousnewsapp.ui.adapter.HeadlinePagingAdapter
@@ -41,11 +42,15 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener, AppInte
         setMainViewModel()
         loadCountriesSpinner()
         setListinners()
-        binding.countrySpinner.setSelection(getPositionFromCountruSelected())
+        setSpinners()
         setPagingAdapter()
-         setSpinners()
-        setupLayoutManager()
+        setCountrySpinnerListinner()
         return binding.root
+    }
+
+    private fun setSpinners()
+    {
+        binding.countrySpinner.setSelection(getPositionFromCountruSelected())
     }
 
     private fun setListinners()
@@ -53,13 +58,13 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener, AppInte
 //        binding.countrySpinner.onItemSelectedListener = this
     }
 
-    private fun setSpinners()
+    private fun setCountrySpinnerListinner()
     {
         binding.countrySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
         {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long)
             {
-                mainViewModel.setHeadlineCountryShared(AppConstants.countrySpinnerList[p2])
+                mainViewModel.setCountryInSharedPrefs(AppConstants.countrySpinnerList[p2])
                 loadData()
 
             }
@@ -76,6 +81,9 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener, AppInte
     {
         pagingAdapter = HeadlinePagingAdapter(requireContext(), binding.newsOfTheDayImg, binding.newsOfTheDayTitle)
         pagingAdapter.setListinner(this)
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.headLinesRv.layoutManager = layoutManager
+        binding.headLinesRv.adapter = pagingAdapter
     }
 
     private fun getPositionFromCountruSelected(): Int
@@ -109,18 +117,11 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener, AppInte
 
     }
 
-    private fun setupLayoutManager()
-    {
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.headLinesRv.layoutManager = layoutManager
-        binding.headLinesRv.adapter = pagingAdapter
-    }
-
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
     {
         when (view?.id)
         {
-            binding.countrySpinner.id ->
+            R.id.country_spinner ->
             {
                 changeCountry(position)
             }
@@ -130,7 +131,7 @@ class HeadlineFragment : Fragment(), AdapterView.OnItemSelectedListener, AppInte
 
     private fun changeCountry(position: Int)
     {
-        mainViewModel.setHeadlineCountryShared(AppConstants.countrySpinnerList[position])
+        mainViewModel.setCountryInSharedPrefs(AppConstants.countrySpinnerList[position])
         loadData()
     }
 

@@ -20,15 +20,15 @@ class NewsRepository(private val newsService: NewsService, private val applicati
 
     //for the get every thing by topic
     private val newsLiveData = MutableLiveData<News>()
-    public val news: LiveData<News>
+    val news: LiveData<News>
         get() = newsLiveData
 
     //for the get headlines by country
     private val headlinesLiveData = MutableLiveData<News>()
-    public val headlines: LiveData<News>
+    val headlines: LiveData<News>
         get() = headlinesLiveData
 
-    var count: Int = 0//for logging
+    private var count: Int = 0//for logging
 
 
     suspend fun getCategory(country: String, page: Int, category: String): Response<News>?
@@ -36,13 +36,13 @@ class NewsRepository(private val newsService: NewsService, private val applicati
         if (NetworkUtils.isInternetAvailable(applicationContext))
         {
             val result = newsService.getByCountryCatagory(country, category, page)
-            if (result?.body() != null)
+            return if (result.body() != null)
             {
-                return result
+                result
             }
             else
             {
-                return null
+                null
             }
         }
         else
@@ -54,19 +54,19 @@ class NewsRepository(private val newsService: NewsService, private val applicati
     suspend fun getEveryThingTopic(q: String, page: Int): Response<News>?
     {
         count++
-        Log.d("repository", "Topic-${count.toString()} and page= $page")
+        Log.d("repository", "Topic-$count and page= $page")
         if (NetworkUtils.isInternetAvailable(applicationContext))
         {
             val result = newsService.getEveryTopic(q, page)
-            if (result?.body() != null)
+            return if (result.body() != null)
             {
                 //TODO: add the data in the database
-                return result
+                result
 
             }
             else
             {
-                return null
+                null
             }
         }
         else
@@ -80,19 +80,19 @@ class NewsRepository(private val newsService: NewsService, private val applicati
     suspend fun getHeadlinesResponse(country: String, page: Int): Response<News>?
     {
         count++
-        Log.d("repository", "Headline- ${count.toString()} and page= $page")
+        Log.d("repository", "Headline- $count and page= $page")
         if (NetworkUtils.isInternetAvailable(applicationContext))
         {
             val result = newsService.getHeadlinesCountry(country, page)
-            if (result?.body() != null)
+            return if (result.body() != null)
             {
                 //TODO: add the data in the database
-                return result
+                result
 
             }
             else
             {
-                return null
+                null
             }
         }
         else
@@ -111,7 +111,7 @@ class NewsRepository(private val newsService: NewsService, private val applicati
 
     }
 
-    fun getHeadlneCountryShared(): String?
+    fun getCountryFromSharedPrefs(): String?
     {
         val sharedPreferences = applicationContext.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
         return sharedPreferences.getString(HEADLINE_COUNTRY_KEY, "us")

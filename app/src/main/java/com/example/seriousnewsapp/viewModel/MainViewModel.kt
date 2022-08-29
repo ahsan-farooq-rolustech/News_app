@@ -13,9 +13,7 @@ import com.example.seriousnewsapp.paging.DiscoveryPagingSource
 import com.example.seriousnewsapp.paging.NewsPagingSource
 import com.example.seriousnewsapp.paging.SearchPagingSource
 import com.example.seriousnewsapp.repository.NewsRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: NewsRepository) : ViewModel()
 {
@@ -28,14 +26,14 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
 
     init
     {
-        country= repository.getHeadlneCountryShared()
+        country= repository.getCountryFromSharedPrefs()
     }
 
 
 
     public fun getCategory(category: String):Flow<PagingData<Article>>
     {
-        refreshHeadlineCountryShared()
+        refreshCountryFromSharedPrefs()
         val list=Pager(PagingConfig(pageSize = 1))
         {
             DiscoveryPagingSource(repository,country!!,category)
@@ -47,7 +45,7 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
     public fun getHeadlinesCountry(): Flow<PagingData<Article>>
     {
 
-        refreshHeadlineCountryShared()
+        refreshCountryFromSharedPrefs()
         val headlinesList = Pager(PagingConfig(pageSize = 1))
         {
             NewsPagingSource(repository, country!!)
@@ -59,7 +57,7 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
 
     public fun getEveryThingTopic(q: String):Flow<PagingData<Article>>
     {
-        refreshHeadlineCountryShared()
+        refreshCountryFromSharedPrefs()
         val list=Pager(PagingConfig(pageSize = 1))
         {
             SearchPagingSource(repository,q)
@@ -69,7 +67,7 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
     }
 
 
-    public fun setHeadlineCountryShared(country: String)
+    public fun setCountryInSharedPrefs(country: String)
     {
         repository.setHeadlineCountryShared(country)
     }
@@ -77,13 +75,13 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel()
     public fun getCountryFromSharesPrefs(): String?
     {
 
-        country=repository.getHeadlneCountryShared()
+        country=repository.getCountryFromSharedPrefs()
         return country
     }
 
-    public fun refreshHeadlineCountryShared()
+    private fun refreshCountryFromSharedPrefs()
     {
-        country=repository.getHeadlneCountryShared()
+        country=repository.getCountryFromSharedPrefs()
     }
 
 }
