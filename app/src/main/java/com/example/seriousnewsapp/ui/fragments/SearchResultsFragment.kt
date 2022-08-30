@@ -25,10 +25,19 @@ class SearchResultsFragment : Fragment(), AppInterfaces
 {
 
     private lateinit var bindind: FragmentSearchResultsBinding
-    private val args by navArgs<SearchResultsFragmentArgs>()
     private lateinit var pagingAdapter: SearchPagingAdapter
     private lateinit var mainViewModel: MainViewModel
     private val TAG = "SearchFragment"
+    private var param1: String? = null
+
+
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString("searchKeyword")
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
@@ -54,11 +63,14 @@ class SearchResultsFragment : Fragment(), AppInterfaces
 
     private fun loadData()
     {
-        val keywords = args.searchKeyword
+        val keywords = param1
         lifecycleScope.launch {
-            mainViewModel.getEveryThingTopic(keywords).collect {
-                pagingAdapter.submitData(it)
-                Log.d(TAG, it.toString())
+            if (keywords != null)
+            {
+                mainViewModel.getEveryThingTopic(keywords).collect {
+                    pagingAdapter.submitData(it)
+                    Log.d(TAG, it.toString())
+                }
             }
         }
     }

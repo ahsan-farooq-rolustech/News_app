@@ -10,40 +10,51 @@
         android:name="com.example.seriousnewsapp.ui.fragments.HeadlineFragment"
         android:label="fragment_headline"
         tools:layout="@layout/fragment_headline" >
+
         <action
             android:id="@+id/action_headlineFragment_to_newsDetailFragment"
-            app:destination="@id/newsDetailFragment" />
+            app:destination="@id/newsDetailFragment" >
+
+                <argument
+                    android:name="newsUrl"
+                    app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
         android:name="com.example.seriousnewsapp.ui.fragments.NewsDetailFragment"
         android:label="fragment_news_detail"
         tools:layout="@layout/fragment_news_detail" >
-        <argument
-            android:name="newsUrl"
-            app:argType="string"
-            android:defaultValue="www.google.com" />
+
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
         android:name="com.example.seriousnewsapp.ui.fragments.DiscoverFragment"
         android:label="fragment_discover"
         tools:layout="@layout/fragment_discover" >
+
         <action
             android:id="@+id/action_discoverFragment_to_searchResultsFragment"
-            app:destination="@id/searchResultsFragment" />
+            app:destination="@id/searchResultsFragment">
+            <argument
+                android:name="searchKeyword"
+                app:argType="string"/>
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/searchResultsFragment"
         android:name="com.example.seriousnewsapp.ui.fragments.SearchResultsFragment"
         android:label="fragment_search_results"
         tools:layout="@layout/fragment_search_results" >
-        <argument
-            android:name="searchKeyword"
-            app:argType="string"
-            android:defaultValue='" "' />
+
         <action
             android:id="@+id/action_searchResultsFragment_to_newsDetailFragment"
-            app:destination="@id/newsDetailFragment" />
+            app:destination="@id/newsDetailFragment" >
+            <argument
+                android:name="newsUrl"
+                app:argType="string" />
+
+        </action>
     </fragment>
 </navigation>

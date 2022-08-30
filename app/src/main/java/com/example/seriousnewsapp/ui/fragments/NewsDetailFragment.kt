@@ -15,7 +15,16 @@ import kotlinx.coroutines.launch
 class NewsDetailFragment : Fragment()
 {
     private lateinit var binding: FragmentNewsDetailBinding
-    private val url by navArgs<NewsDetailFragmentArgs>()
+    private var param1: String? = null
+
+
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString("newsUrl")
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
@@ -36,7 +45,7 @@ class NewsDetailFragment : Fragment()
 
     @SuppressLint("SetJavaScriptEnabled") private suspend fun loadWebView()
     {
-        binding.detailsWebView.loadUrl(url.newsUrl)
+        param1?.let { binding.detailsWebView.loadUrl(it) }
         binding.detailsWebView.settings.javaScriptEnabled = true
     }
 
